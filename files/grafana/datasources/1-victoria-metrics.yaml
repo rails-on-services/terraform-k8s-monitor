@@ -1,0 +1,23 @@
+# config file version
+apiVersion: 1
+# list of datasources that should be deleted from the database
+# deleteDatasources:
+# - name: Prometheus
+#   orgId: 1
+# list of datasources to insert/update depending
+# whats available in the database
+datasources:
+- name: VictoriaMetrics
+  type: prometheus
+  access: proxy
+  orgId: 1
+  url: http://vmselect.monitor.svc.cluster.local:8481/select/1/prometheus
+  isDefault: true
+  editable: false
+- name: Loki
+  type: loki
+  access: proxy
+  orgId: 1
+  url: http://loki.monitor.svc.cluster.local:3100
+  isDefault: false
+  editable: false

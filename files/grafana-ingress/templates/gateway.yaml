@@ -1,0 +1,23 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: {{ include "grafana-ingress.fullname" . }}-gateway
+  labels:
+    app.kubernetes.io/name: {{ include "grafana-ingress.name" . }}
+    helm.sh/chart: {{ include "grafana-ingress.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+    {{- with .Values.labels }}
+    {{- toYaml . | trim | nindent 4 }}
+    {{- end }}
+spec:
+  selector:
+    istio: ingressgateway # use Istio default gateway implementation
+  servers:
+  - hosts:
+    {{- toYaml .Values.hosts | nindent 6 }}
+    port:
+      number: 80
+      name: http
+      protocol: HTTP
+

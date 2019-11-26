@@ -1,0 +1,16 @@
+resources:
+  limits:
+    cpu: 200m
+    memory: 0.5Gi
+  requests:
+    cpu: 100m
+    memory: 256Mi
+config:
+  table_manager:
+    retention_deletes_enabled: true
+    retention_period: 336h
+persistence:
+  enabled: true
+  accessModes:
+  - ReadWriteOnce
+  size: 50Gi
