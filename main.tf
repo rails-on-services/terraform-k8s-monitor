@@ -23,7 +23,7 @@ resource "helm_release" "kube-state-metrics" {
   namespace = "kube-system"
   wait      = true
 
-  values = [file("${path.module}/files/kube-state-metrics.yaml")]
+  values = [file("${path.module}/files/helm-kube-state-metrics.yaml")]
 }
 
 resource "kubernetes_secret" "grafana-credentials" {
