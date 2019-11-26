@@ -34,3 +34,31 @@ variable "monitor_depends_on" {
   default     = null
   description = "Variable to pass dependancy on module" # https://discuss.hashicorp.com/t/tips-howto-implement-module-depends-on-emulation/2305/2
 }
+
+variable "vm_version" {
+  type = string
+  default = "1.30.0"
+  description = "Victoria Metrics version to deploy"
+}
+
+variable "loki_version" {
+  type        = string
+  default     = "1.0.0"
+  description = "Loki version to deploy"
+}
+
+variable "prometheus_version" {
+  type        = string
+  default     = "2.14.0"
+  description = "Prometheus version to deploy"
+}
+
+variable "grafana_version" {
+  type        = string
+  default     = "6.5.0"
+  description = "Grafana version to deploy"
+}
+
+
+
+

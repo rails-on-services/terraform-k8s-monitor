@@ -1,2 +1,0 @@
-host: ${host}
-hosts: [${endpoint}]
