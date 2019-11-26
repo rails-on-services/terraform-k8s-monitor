@@ -83,9 +83,11 @@ resource "helm_release" "grafana-ingress" {
   namespace  = var.namespace
   wait       = true
 
-  values = [
-    host  = var.grafana_host,
-    hosts = [var.grafana_endpoint]
+  values = [templatefile("${path.module}/templates/grafana-ingress.tpl", {
+    host     = var.grafana_host,
+    endpoint = var.grafana_endpoint
+    }
+    )
   ]
 }
 
@@ -104,7 +106,10 @@ resource "helm_release" "grafana" {
   force_update = true
 
   values = [
-    image.tag = var.grafana_version,
+    templatefile("${path.module}/templates/grafana.tpl", {
+      tag = var.grafana_version
+    }
+    ),
     file("${path.module}/files/grafana/helm-grafana.yaml"),
     jsonencode(lookup(var.helm_configuration_overrides, "grafana", {}))
   ]
@@ -120,7 +125,10 @@ resource "helm_release" "prometheus" {
   force_update = true
 
   values = [
-    server.image.tag = "v${var.prometheus_version}",
+    templatefile("${path.module}/templates/prometheus.tpl", {
+      tag = var.prometheus_version
+    }
+    ),
     file("${path.module}/files/helm-prometheus.yaml"),
     jsonencode(lookup(var.helm_configuration_overrides, "prometheus", {}))
   ]
@@ -136,7 +144,10 @@ resource "helm_release" "loki" {
   force_update = true
 
   values = [
-    image.tag = "v${loki_version}",
+    templatefile("${path.module}/templates/loki.tpl", {
+      tag = var.loki_version
+    }
+    ),
     file("${path.module}/files/helm-loki.yaml"),
     jsonencode(lookup(var.helm_configuration_overrides, "loki", {}))
   ]
@@ -152,9 +163,10 @@ resource "helm_release" "victoria-metrics" {
   force_update = true
 
   values = [
-    vmselect.image.tag = "v${vm_version}-cluster",
-    vminsert.image.tag = "v${vm_version}-cluster",
-    vmstorage.image.tag = "v${vm_version}-cluster",
+    templatefile("${path.module}/templates/victoria.tpl", {
+      tag = var.vm_version
+    }
+    ),
     file("${path.module}/files/helm-victoria-metrics.yaml"),
     jsonencode(lookup(var.helm_configuration_overrides, "victoria-metrics", {}))
   ]
