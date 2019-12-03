@@ -21,3 +21,11 @@ datasources:
   url: http://loki.monitor.svc.cluster.local:3100
   isDefault: false
   editable: false
+- name: CloudWatch
+  type: cloudwatch
+  access: proxy
+  orgId: 1
+  jsonData:
+     defaultRegion: "ap-southeast-1"
+  version: 1
+  editable: false
