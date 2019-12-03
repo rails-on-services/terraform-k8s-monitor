@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": 9871,
   "graphTooltip": 0,
-  "iteration": 1573788184944,
+  "iteration": 1575347763147,
   "links": [],
   "panels": [
     {
@@ -51,6 +51,7 @@
         "x": 0,
         "y": 1
       },
+      "hiddenSeries": false,
       "id": 26,
       "legend": {
         "alignAsTable": true,
@@ -198,7 +199,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.4.4",
+      "pluginVersion": "6.5.0",
       "targets": [
         {
           "expr": "sum(rate(container_cpu_usage_seconds_total{instance=~\"$node\", id=\"/\"})) / sum(kube_node_status_allocatable{node=~\"$node\", resource=\"cpu\"})",
@@ -265,7 +266,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.4.4",
+      "pluginVersion": "6.5.0",
       "targets": [
         {
           "expr": "sum(container_memory_working_set_bytes{instance=~\"$node\",id=\"/\"})/sum(kube_node_status_allocatable{node=~\"$node\",resource=\"memory\"})",
@@ -300,6 +301,7 @@
         "x": 16,
         "y": 1
       },
+      "hiddenSeries": false,
       "id": 28,
       "legend": {
         "alignAsTable": true,
@@ -955,7 +957,7 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 20,
+  "schemaVersion": 21,
   "style": "dark",
   "tags": [
     "resources",
@@ -966,7 +968,7 @@
       {
         "allValue": ".*",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": "All",
           "value": "$__all"
         },
@@ -1022,5 +1024,5 @@
   "timezone": "",
   "title": "Cluster Overview",
   "uid": "_eioEq-ik",
-  "version": 34681
+  "version": 1
 }
