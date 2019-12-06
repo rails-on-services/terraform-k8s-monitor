@@ -16,8 +16,7 @@
   "editable": true,
   "gnetId": 969,
   "graphTooltip": 0,
-  "id": 12,
-  "iteration": 1575347400295,
+  "iteration": 1575638620232,
   "links": [],
   "panels": [
     {
@@ -47,6 +46,7 @@
         "current": true,
         "max": true,
         "min": true,
+        "rightSide": true,
         "show": true,
         "sortDesc": true,
         "total": false,
@@ -76,6 +76,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -83,9 +84,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "CacheHits",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -107,6 +110,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -114,9 +118,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "CacheMisses",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -138,6 +144,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -145,9 +152,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "Evictions",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -169,6 +178,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -176,9 +186,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "Reclaimed",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -204,6 +216,7 @@
         "sort": 0,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -262,6 +275,7 @@
         "current": true,
         "max": true,
         "min": true,
+        "rightSide": true,
         "show": true,
         "sort": "max",
         "sortDesc": true,
@@ -292,6 +306,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -299,9 +314,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "GetTypeCmds",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -323,6 +340,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -330,9 +348,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "HashBasedCmds",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -354,6 +374,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -361,9 +382,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "HashBasedCmds",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -385,6 +408,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -392,9 +416,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "ListBasedCmds",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -416,6 +442,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -423,9 +450,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "SetBasedCmds",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -447,6 +476,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -454,9 +484,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "SetTypeCmds",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -478,6 +510,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -485,9 +518,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "SortedSetBasedCmds",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -509,6 +544,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -516,9 +552,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "StringBasedCmds",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -544,6 +582,7 @@
         "sort": 0,
         "value_type": "individual"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -602,6 +641,7 @@
         "current": true,
         "max": true,
         "min": true,
+        "rightSide": true,
         "show": true,
         "sortDesc": true,
         "total": false,
@@ -636,6 +676,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -643,9 +684,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "NewConnections",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -667,6 +710,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -674,9 +718,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "CurrConnections",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -702,6 +748,7 @@
         "sort": 0,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -760,6 +807,7 @@
         "current": true,
         "max": true,
         "min": true,
+        "rightSide": true,
         "show": true,
         "sortDesc": true,
         "total": false,
@@ -794,6 +842,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -801,9 +850,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "SaveInProgress",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -825,6 +876,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -832,9 +884,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "CurrItems",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -860,6 +914,7 @@
         "sort": 0,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -918,6 +973,7 @@
         "current": true,
         "max": true,
         "min": true,
+        "rightSide": true,
         "show": true,
         "sort": "current",
         "sortDesc": true,
@@ -953,6 +1009,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -960,9 +1017,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "BytesUsedForCache",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -984,6 +1043,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -991,9 +1051,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "ReplicationBytes",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -1019,6 +1081,7 @@
         "sort": 0,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1077,6 +1140,7 @@
         "current": true,
         "max": true,
         "min": true,
+        "rightSide": true,
         "show": true,
         "sortDesc": true,
         "total": false,
@@ -1111,6 +1175,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -1118,9 +1183,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "HyperLogLogBasedCmds",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -1142,6 +1209,7 @@
           "dimensions": {
             "CacheClusterId": "$cacheclusterId"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -1149,9 +1217,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "ReplicationLag",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -1177,6 +1247,7 @@
         "sort": 0,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1235,6 +1306,7 @@
         "current": true,
         "max": true,
         "min": true,
+        "rightSide": true,
         "show": true,
         "sort": "current",
         "sortDesc": true,
@@ -1266,6 +1338,7 @@
             "CacheClusterId": "$cacheclusterId",
             "CacheNodeId": "$cachenodeid"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -1273,9 +1346,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "CPUUtilization",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -1301,6 +1376,7 @@
         "sort": 0,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1359,6 +1435,7 @@
         "current": true,
         "max": true,
         "min": true,
+        "rightSide": true,
         "show": true,
         "sort": "current",
         "sortDesc": true,
@@ -1395,6 +1472,7 @@
             "CacheClusterId": "$cacheclusterId",
             "CacheNodeId": "$cachenodeid"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -1402,9 +1480,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "NetworkBytesIn",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -1427,6 +1507,7 @@
             "CacheClusterId": "$cacheclusterId",
             "CacheNodeId": "$cachenodeid"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -1434,9 +1515,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "NetworkBytesOut",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -1462,6 +1545,7 @@
         "sort": 0,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1520,6 +1604,7 @@
         "current": true,
         "max": true,
         "min": true,
+        "rightSide": true,
         "show": true,
         "sort": "current",
         "sortDesc": true,
@@ -1556,6 +1641,7 @@
             "CacheClusterId": "$cacheclusterId",
             "CacheNodeId": "$cachenodeid"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -1563,9 +1649,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "SwapUsage",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -1588,6 +1676,7 @@
             "CacheClusterId": "$cacheclusterId",
             "CacheNodeId": "$cachenodeid"
           },
+          "expression": "",
           "functions": [],
           "group": {
             "filter": ""
@@ -1595,9 +1684,11 @@
           "host": {
             "filter": ""
           },
+          "id": "",
           "item": {
             "filter": ""
           },
+          "matchExact": true,
           "metricName": "FreeableMemory",
           "mode": 0,
           "namespace": "AWS/ElastiCache",
@@ -1623,6 +1714,7 @@
         "sort": 0,
         "value_type": "cumulative"
       },
+      "transparent": true,
       "type": "graph",
       "xaxis": {
         "buckets": null,
@@ -1678,15 +1770,14 @@
   "schemaVersion": 21,
   "style": "dark",
   "tags": [
-    "monitoringartist",
-    "cloudwatch"
+    "cloudwatch",
+    "redis"
   ],
   "templating": {
     "list": [
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "ap-southeast-1",
           "value": "ap-southeast-1"
         },
@@ -1762,7 +1853,7 @@
     ]
   },
   "time": {
-    "from": "now-90d",
+    "from": "now-1d",
     "to": "now"
   },
   "timepicker": {
@@ -1793,5 +1884,5 @@
   "timezone": "browser",
   "title": "AWS ElastiCache Redis",
   "uid": "SFfa8IaWk",
-  "version": 1
+  "version": 2
 }

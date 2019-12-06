@@ -18,7 +18,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1573573133939,
+  "iteration": 1575638469252,
   "links": [],
   "panels": [
     {
@@ -35,6 +35,7 @@
         "x": 0,
         "y": 0
       },
+      "hiddenSeries": false,
       "id": 6,
       "interval": "",
       "legend": {
@@ -131,6 +132,7 @@
         "x": 12,
         "y": 0
       },
+      "hiddenSeries": false,
       "id": 4,
       "interval": "1m",
       "legend": {
@@ -225,6 +227,7 @@
         "x": 0,
         "y": 7
       },
+      "hiddenSeries": false,
       "id": 2,
       "interval": "1m",
       "legend": {
@@ -325,6 +328,7 @@
         "x": 0,
         "y": 12
       },
+      "hiddenSeries": false,
       "id": 185,
       "interval": "1m",
       "legend": {
@@ -423,6 +427,7 @@
         "x": 0,
         "y": 17
       },
+      "hiddenSeries": false,
       "id": 204,
       "legend": {
         "alignAsTable": true,
@@ -520,6 +525,7 @@
         "x": 0,
         "y": 23
       },
+      "hiddenSeries": false,
       "id": 206,
       "legend": {
         "alignAsTable": true,
@@ -543,12 +549,12 @@
           {
             "targetBlank": true,
             "title": "Explore Logs",
-            "url": "explore?orgId=1&left=[\"${__from}\",\"${__value.time}\",\"Loki\",{\"expr\":\"{namespace=\\\"${namespace}\\\",app=\\\"${__series.labels.app}\\\"}\"},{\"mode\":\"Logs\"},{\"ui\":[true,true,true,\"none\"]}]"
+            "url": "explore?orgId=1&left=[\"${__from}\",\"${__value.time}\",\"Loki\",{\"expr\":\"{namespace=\\\"${namespace}\\\",app=\\\"${__field.labels.app}\\\"}\"},{\"mode\":\"Logs\"},{\"ui\":[true,true,true,\"none\"]}]"
           },
           {
             "targetBlank": true,
             "title": "Logs Dashboard",
-            "url": "d/oBLTuAAWk/application-logs?orgId=1&from=${__from}&to=${__value.time}&var-namespace=${namespace}&var-app=${__series.labels.app}"
+            "url": "d/oBLTuAAWk/application-logs?orgId=1&from=${__from}&to=${__value.time}&var-namespace=${namespace}&var-app=${__field.labels.app}"
           }
         ]
       },
@@ -626,6 +632,7 @@
         "x": 0,
         "y": 28
       },
+      "hiddenSeries": false,
       "id": 207,
       "legend": {
         "alignAsTable": true,
@@ -649,7 +656,7 @@
           {
             "targetBlank": true,
             "title": "Logs Dashboard",
-            "url": "d/oBLTuAAWk/application-logs?orgId=1&from=${__from}&to=${__value.time}&var-namespace=${namespace}&var-app=${__series.labels.app}"
+            "url": "d/oBLTuAAWk/application-logs?orgId=1&from=${__from}&to=${__value.time}&var-namespace=${namespace}&var-app=${__field.labels.app}"
           }
         ]
       },
@@ -714,9 +721,12 @@
     }
   ],
   "refresh": false,
-  "schemaVersion": 20,
+  "schemaVersion": 21,
   "style": "dark",
-  "tags": [],
+  "tags": [
+    "ruby",
+    "application"
+  ],
   "templating": {
     "list": [
       {
@@ -805,5 +815,5 @@
   "timezone": "",
   "title": "Rails App Overview",
   "uid": "ZFkkPt0Wz",
-  "version": 3
+  "version": 2
 }

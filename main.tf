@@ -41,11 +41,11 @@ resource "kubernetes_secret" "grafana-credentials" {
 }
 
 resource "kubernetes_secret" "grafana-datasources" {
-  count      = length(fileset(path.module, "files/grafana/datasources/*.yaml"))
+  count      = length(fileset(local.datasources_path, "*.yaml"))
   depends_on = [var.monitor_depends_on]
 
   metadata {
-    name      = "grafana-datasource-${replace(replace(basename(sort(fileset(path.module, "files/grafana/datasources/*.yaml"))[count.index]), ".yaml", ""), "_", "-")}"
+    name      = "grafana-datasource-${replace(replace(sort(fileset(local.datasources_path, "*.yaml"))[count.index], ".yaml", ""), "_", "-")}"
     namespace = var.namespace
 
     labels = {
@@ -54,25 +54,117 @@ resource "kubernetes_secret" "grafana-datasources" {
   }
 
   data = {
-    basename(sort(fileset(path.module, "files/grafana/datasources/*.yaml"))[count.index]) = file("${path.module}/${sort(fileset(path.module, "files/grafana/datasources/*.yaml"))[count.index]}")
+    sort(fileset(local.datasources_path, "*.yaml"))[count.index] = file("${local.datasources_path}/${sort(fileset(local.datasources_path, "*.yaml"))[count.index]}")
   }
 }
 
-resource "kubernetes_config_map" "grafana-dashboards" {
-  count      = length(fileset(path.module, "files/grafana/dashboards/*.json"))
+resource "kubernetes_config_map" "grafana-dashboards-general" {
+  count      = length(fileset(local.dashboards_path, "*.json"))
   depends_on = [var.monitor_depends_on]
 
   metadata {
-    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(path.module, "files/grafana/dashboards/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    name      = "grafana-dashboard-${replace(replace(sort(fileset(local.dashboards_path, "*.json"))[count.index], ".json", ""), "_", "-")}"
     namespace = var.namespace
 
     labels = {
       grafana_dashboard = 1
     }
+
+    annotations = {
+      k8s-sidecar-target-directory: "/tmp/dashboards"
+    }
   }
 
   data = {
-    basename(sort(fileset(path.module, "files/grafana/dashboards/*.json"))[count.index]) = file("${path.module}/${sort(fileset(path.module, "files/grafana/dashboards/*.json"))[count.index]}")
+    basename(sort(fileset(local.dashboards_path, "*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "*.json"))[count.index]}")
+  }
+}
+
+resource "kubernetes_config_map" "grafana-dashboards-kubernetes" {
+  count      = length(fileset(local.dashboards_path, "kubernetes/*.json"))
+  depends_on = [var.monitor_depends_on]
+
+  metadata {
+    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "kubernetes/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    namespace = var.namespace
+
+    labels = {
+      grafana_dashboard = 1
+    }
+
+    annotations = {
+      k8s-sidecar-target-directory: "/tmp/dashboards/kubernetes"
+    }
+  }
+
+  data = {
+    basename(sort(fileset(local.dashboards_path, "Kubernetes/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "kubernetes/*.json"))[count.index]}")
+  }
+}
+
+resource "kubernetes_config_map" "grafana-dashboards-aws" {
+  count      = length(fileset(local.dashboards_path, "aws/*.json"))
+  depends_on = [var.monitor_depends_on]
+
+  metadata {
+    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "aws/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    namespace = var.namespace
+
+    labels = {
+      grafana_dashboard = 1
+    }
+
+    annotations = {
+      k8s-sidecar-target-directory: "/tmp/dashboards/aws"
+    }
+  }
+
+  data = {
+    basename(sort(fileset(local.dashboards_path, "aws/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "aws/*.json"))[count.index]}")
+  }
+}
+
+resource "kubernetes_config_map" "grafana-dashboards-logs" {
+  count      = length(fileset(local.dashboards_path, "logs/*.json"))
+  depends_on = [var.monitor_depends_on]
+
+  metadata {
+    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "logs/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    namespace = var.namespace
+
+    labels = {
+      grafana_dashboard = 1
+    }
+
+    annotations = {
+      k8s-sidecar-target-directory: "/tmp/dashboards/logs"
+    }
+  }
+
+  data = {
+    basename(sort(fileset(local.dashboards_path, "logs/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "logs/*.json"))[count.index]}")
+  }
+}
+
+resource "kubernetes_config_map" "grafana-dashboards-rails" {
+  count      = length(fileset(local.dashboards_path, "rails/*.json"))
+  depends_on = [var.monitor_depends_on]
+
+  metadata {
+    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "rails/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    namespace = var.namespace
+
+    labels = {
+      grafana_dashboard = 1
+    }
+
+    annotations = {
+      k8s-sidecar-target-directory: "/tmp/dashboards/rails"
+    }
+  }
+
+  data = {
+    basename(sort(fileset(local.dashboards_path, "rails/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "rails/*.json"))[count.index]}")
   }
 }
 
@@ -94,7 +186,6 @@ resource "helm_release" "grafana-ingress" {
 resource "helm_release" "grafana" {
   depends_on = [
     kubernetes_secret.grafana-credentials,
-    kubernetes_config_map.grafana-dashboards,
     kubernetes_secret.grafana-datasources
   ]
 
