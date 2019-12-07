@@ -9,10 +9,10 @@ service:
   type: ClusterIP
 resources:
   limits:
-    cpu: 200m
+    cpu: 300m
     memory: 512Mi
   requests:
-    cpu: 100m
+    cpu: 200m
     memory: 256Mi
 admin:
   existingSecret: grafana-credentials
@@ -20,49 +20,11 @@ admin:
   passwordKey: password
 sidecar:
   dashboards:
-    enabled: true
-    label: grafana_dashboard
+    enabled: false
   datasources:
     enabled: true
     label: grafana_datasource
 plugins:
-  - grafana-piechart-panel
+- grafana-piechart-panel
 env:
   GODEBUG: netdns=go
-dashboardProviders:
-  dashboardproviders.yaml:
-    apiVersion: 1
-    providers:
-    - name: 'Kubernetes'
-      orgId: 1
-      folder: 'Kubernetes'
-      type: file
-      disableDeletion: false
-      editable: false
-      options:
-        path: /tmp/dashboards/kubernetes
-    - name: 'AWS'
-      orgId: 1
-      folder: 'AWS'
-      type: file
-      disableDeletion: false
-      editable: false
-      options:
-        path: /tmp/dashboards/aws
-    - name: 'Logs'
-      orgId: 1
-      folder: 'Logs'
-      type: file
-      disableDeletion: false
-      editable: false
-      options:
-        path: /tmp/dashboards/logs
-    - name: 'Rails'
-      orgId: 1
-      folder: 'Rails Application'
-      type: file
-      disableDeletion: false
-      editable: false
-      options:
-        path: /tmp/dashboards/rails
-
