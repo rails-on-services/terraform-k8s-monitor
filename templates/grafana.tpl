@@ -44,6 +44,14 @@ dashboardProviders:
       editable: true
       options:
         path: /var/lib/grafana/dashboards/vm
+    - name: 'istio'
+      orgId: 1
+      folder: 'Istio'
+      type: file
+      disableDeletion: true
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards/istio
 dashboards:
   kubernetes:
     cluster-usage-overview:
@@ -77,3 +85,10 @@ dashboards:
     victoria-metrics-dashboard:
       json: |
         ${victoria-metrics-dashboard}
+  istio:
+    istio-performance:
+      json: |
+        ${istio-performance}
+    istio-workload:
+      json: |
+        ${istio-workload}

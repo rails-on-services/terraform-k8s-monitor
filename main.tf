@@ -103,6 +103,9 @@ resource "helm_release" "grafana" {
       worker-jobs                = indent(8, file("${local.dashboards_path}/rails/worker-jobs.json"))
       # Victoria Metrics
       victoria-metrics-dashboard = indent(8, file("${local.dashboards_path}/vm/victoria-metrics-dashboard.json"))
+      # Istio
+      istio-performance          = indent(8, file("${local.dashboards_path}/istio/istio-performance.json"))
+      istio-workload             = indent(8, file("${local.dashboards_path}/istio/istio-workload.json"))
     }
     ),
     file("${path.module}/files/grafana/helm-grafana.yaml"),
