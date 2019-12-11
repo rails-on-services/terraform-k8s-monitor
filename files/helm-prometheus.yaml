@@ -21,8 +21,8 @@ serviceAccounts:
 server:
   labels:
     app.kubernetes.io/part-of: monitoring
-  # persistentVolume:
-  #   size: 50Gi
+  persistentVolume:
+    size: 50Gi
   resources:
     limits:
       cpu: 1000m
