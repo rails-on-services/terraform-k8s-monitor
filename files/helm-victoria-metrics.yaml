@@ -28,7 +28,7 @@ vmstorage:
   image:
     pullPolicy: Always
   persistentVolume:
-    size: 100Gi
+    size: 150Gi
   resources:
     limits:
       cpu: 1
