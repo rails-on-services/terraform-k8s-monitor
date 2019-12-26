@@ -22,19 +22,19 @@ server:
   labels:
     app.kubernetes.io/part-of: monitoring
   persistentVolume:
-    size: 50Gi
+    enabled: false
   resources:
     limits:
       cpu: 1000m
-      memory: 6Gi
+      memory: 7Gi
     requests:
       cpu: 500m
-      memory: 3Gi
+      memory: 5Gi
   global:
     scrape_interval: "15s"
   strategy:
     type: Recreate
-  retention: "1d"
+  retention: "2h"
 serverFiles:
   prometheus.yml:
     remote_write:

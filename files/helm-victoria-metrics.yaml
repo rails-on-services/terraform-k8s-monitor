@@ -1,6 +1,6 @@
 vmselect:
   fullnameOverride: vmselect
-  replicaCount: 1
+  replicaCount: 2
   image:
     pullPolicy: Always
   resources:
@@ -10,18 +10,60 @@ vmselect:
     requests:
       cpu: 300m
       memory: 512Mi
+  # serviceMonitor:
+  #   enabled: true
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: kubernetes.io/lifecycle
+            operator: In
+            values:
+            - spot
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/name
+            operator: In
+            values:
+            - victoria-metrics-cluster
+        topologyKey: kubernetes.io/hostname
 vminsert:
   fullnameOverride: vminsert
-  replicaCount: 1
+  replicaCount: 2
   image:
     pullPolicy: Always
   resources:
     limits:
       cpu: 1
-      memory: 1Gi
+      memory: 1.5Gi
     requests:
       cpu: 300m
-      memory: 512Mi
+      memory: 1Gi
+  # serviceMonitor:
+  #   enabled: true
+  affinity:
+    nodeAffinity:
+      preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 1
+        preference:
+          matchExpressions:
+          - key: kubernetes.io/lifecycle
+            operator: In
+            values:
+            - spot
+    podAntiAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchExpressions:
+          - key: app.kubernetes.io/name
+            operator: In
+            values:
+            - victoria-metrics-cluster
+        topologyKey: kubernetes.io/hostname
 vmstorage:
   fullnameOverride: vmstorage
   replicaCount: 1
@@ -34,5 +76,7 @@ vmstorage:
       cpu: 1
       memory: 4Gi
     requests:
-      cpu: 300m
-      memory: 2Gi
+      cpu: 500m
+      memory: 3Gi
+  # serviceMonitor:
+  #   enabled: true
