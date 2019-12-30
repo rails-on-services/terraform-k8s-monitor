@@ -17,7 +17,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1574929926434,
+  "iteration": 1577671354795,
   "links": [],
   "panels": [
     {
@@ -747,7 +747,7 @@
         "name": "namespace",
         "options": [],
         "query": "label_values(namespace)",
-        "refresh": 1,
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -790,7 +790,7 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -810,5 +810,5 @@
   "timezone": "",
   "title": "Container Resource Usage",
   "uid": "HfUgCa0Wk",
-  "version": 1
+  "version": 3
 }
