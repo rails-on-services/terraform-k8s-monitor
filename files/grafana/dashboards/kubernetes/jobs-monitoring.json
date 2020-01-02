@@ -16,113 +16,9 @@
   "editable": true,
   "gnetId": 10884,
   "graphTooltip": 0,
-  "id": 21,
-  "iteration": 1577960967780,
+  "iteration": 1577961605005,
   "links": [],
   "panels": [
-    {
-      "aliasColors": {},
-      "bars": false,
-      "cacheTimeout": null,
-      "dashLength": 10,
-      "dashes": false,
-      "datasource": "VictoriaMetrics",
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 0
-      },
-      "hiddenSeries": false,
-      "id": 2,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "max": true,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sideWidth": null,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "links": [],
-      "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
-      "percentage": false,
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "count(kube_cronjob_info)",
-          "format": "time_series",
-          "instant": false,
-          "intervalFactor": 1,
-          "legendFormat": "{{total cronjob}}",
-          "refId": "A"
-        },
-        {
-          "expr": "kube_cronjob_info",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "legendFormat": "{{cronjob}}",
-          "refId": "B"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Cron Jobs",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
     {
       "alert": {
         "alertRuleTags": {},
@@ -170,8 +66,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 12,
-        "x": 12,
+        "w": 24,
+        "x": 0,
         "y": 0
       },
       "hiddenSeries": false,
@@ -287,9 +183,9 @@
       "datasource": "VictoriaMetrics",
       "fontSize": "100%",
       "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 12,
+        "h": 7,
+        "w": 24,
+        "x": 0,
         "y": 8
       },
       "id": 12,
@@ -319,7 +215,7 @@
           "link": true,
           "linkTargetBlank": true,
           "linkTooltip": "Explore Logs",
-          "linkUrl": "d/IO0ofYLZz/jobs-logs?orgId=1&var-namespace=${namespace}&var-job=${__cell:raw}",
+          "linkUrl": "d/IO0ofYLZz/jobs-logs?orgId=1&var-namespace=${namespace}&var-job=${__cell:raw}&from=${__from}&to=${__to}",
           "pattern": "Metric",
           "thresholds": [],
           "type": "number",
@@ -433,5 +329,5 @@
   "timezone": "",
   "title": "Kubernetes Cron and Batch Job monitoring",
   "uid": "cb0HhItWz",
-  "version": 10
+  "version": 11
 }
