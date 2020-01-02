@@ -15,8 +15,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 22,
-  "iteration": 1577960316344,
+  "iteration": 1577977185567,
   "links": [],
   "panels": [
     {
@@ -30,7 +29,7 @@
       "id": 2,
       "options": {
         "showTime": true,
-        "sortOrder": "Descending"
+        "sortOrder": "Ascending"
       },
       "targets": [
         {
@@ -53,7 +52,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "dev1-whistler",
           "value": "dev1-whistler"
         },
