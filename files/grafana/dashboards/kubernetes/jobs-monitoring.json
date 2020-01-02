@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": 10884,
   "graphTooltip": 0,
-  "iteration": 1577961605005,
+  "iteration": 1577972874504,
   "links": [],
   "panels": [
     {
@@ -36,24 +36,29 @@
             "query": {
               "params": [
                 "C",
-                "5m",
+                "1m",
                 "now"
               ]
             },
             "reducer": {
               "params": [],
-              "type": "avg"
+              "type": "last"
             },
             "type": "query"
           }
         ],
         "executionErrorState": "alerting",
-        "for": "5m",
+        "for": "2m",
         "frequency": "1m",
         "handler": 1,
+        "message": "Kubernetes job failed\nhttps://grafana.uat.whistler.perxtech.io/d/cb0HhItWz/kubernetes-cron-and-batch-job-monitoring?orgId=1",
         "name": "Batch Jobs alert",
         "noDataState": "no_data",
-        "notifications": []
+        "notifications": [
+          {
+            "uid": "whistler_slack_1"
+          }
+        ]
       },
       "aliasColors": {},
       "bars": false,
@@ -65,8 +70,8 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 8,
-        "w": 24,
+        "h": 12,
+        "w": 14,
         "x": 0,
         "y": 0
       },
@@ -132,8 +137,7 @@
           "fill": true,
           "line": true,
           "op": "gt",
-          "value": 0,
-          "yaxis": "left"
+          "value": 0
         }
       ],
       "timeFrom": null,
@@ -183,10 +187,10 @@
       "datasource": "VictoriaMetrics",
       "fontSize": "100%",
       "gridPos": {
-        "h": 7,
-        "w": 24,
-        "x": 0,
-        "y": 8
+        "h": 12,
+        "w": 10,
+        "x": 14,
+        "y": 0
       },
       "id": 12,
       "options": {},
@@ -273,15 +277,18 @@
       {
         "allValue": null,
         "current": {
+          "tags": [],
           "text": "dev1-whistler",
-          "value": "dev1-whistler"
+          "value": [
+            "dev1-whistler"
+          ]
         },
         "datasource": "VictoriaMetrics",
         "definition": "label_values(kube_job_info, namespace)",
         "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "label": "Namespace",
-        "multi": false,
+        "multi": true,
         "name": "namespace",
         "options": [],
         "query": "label_values(kube_job_info, namespace)",
@@ -329,5 +336,5 @@
   "timezone": "",
   "title": "Kubernetes Cron and Batch Job monitoring",
   "uid": "cb0HhItWz",
-  "version": 11
+  "version": 1
 }

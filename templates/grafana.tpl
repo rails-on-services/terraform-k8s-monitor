@@ -77,6 +77,9 @@ dashboards:
     loki-application-logs:
       json: |
         ${loki-application-logs}
+    loki-job-logs:
+      json: |
+        ${loki-job-logs}
   rails:
     rails-app-overview:
       json: |

@@ -99,6 +99,7 @@ resource "helm_release" "grafana" {
       jobs-monitoring            = indent(8, file("${local.dashboards_path}/kubernetes/jobs-monitoring.json"))
       # Loki Logs
       loki-application-logs      = indent(8, file("${local.dashboards_path}/logs/loki-application-logs.json"))
+      loki-job-logs              = indent(8, file("${local.dashboards_path}/logs/loki-job-logs.json"))
       # Rails App
       rails-app-overview         = indent(8, file("${local.dashboards_path}/rails/rails-app-overview.json"))
       worker-jobs                = indent(8, file("${local.dashboards_path}/rails/worker-jobs.json"))
