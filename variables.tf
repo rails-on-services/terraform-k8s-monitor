@@ -43,7 +43,7 @@ variable "vm_version" {
 
 variable "loki_version" {
   type        = string
-  default     = "1.0.0"
+  default     = "1.2.0"
   description = "Loki version to deploy"
 }
 
