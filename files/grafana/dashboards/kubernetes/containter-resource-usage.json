@@ -17,7 +17,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1577979994373,
+  "iteration": 1577981223644,
   "links": [],
   "panels": [
     {
@@ -835,14 +835,14 @@
           ]
         },
         "datasource": "VictoriaMetrics",
-        "definition": "label_values(namespace)",
+        "definition": "label_values(container_cpu_system_seconds_total, namespace)",
         "hide": 0,
         "includeAll": true,
         "label": "Namespace",
         "multi": true,
         "name": "namespace",
         "options": [],
-        "query": "label_values(namespace)",
+        "query": "label_values(container_cpu_system_seconds_total, namespace)",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -886,7 +886,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {
@@ -906,5 +906,5 @@
   "timezone": "",
   "title": "Container Resource Usage",
   "uid": "HfUgCa0Wk",
-  "version": 1
+  "version": 2
 }
