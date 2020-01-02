@@ -15,7 +15,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1577957941844,
+  "id": 22,
+  "iteration": 1577960316344,
   "links": [],
   "panels": [
     {
@@ -33,13 +34,14 @@
       },
       "targets": [
         {
-          "expr": "{app=\"$app\",namespace=\"$namespace\"}",
+          "expr": "{job_name=\"$job\",namespace=\"$namespace\"}",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Application Logs",
+      "title": "Job Logs",
+      "transparent": true,
       "type": "logs"
     }
   ],
@@ -51,8 +53,9 @@
       {
         "allValue": null,
         "current": {
-          "text": "cert-manager",
-          "value": "cert-manager"
+          "tags": [],
+          "text": "dev1-whistler",
+          "value": "dev1-whistler"
         },
         "datasource": "VictoriaMetrics",
         "definition": "label_values(namespace)",
@@ -76,18 +79,18 @@
       {
         "allValue": null,
         "current": {
-          "text": "campaign-worker",
-          "value": "campaign-worker"
+          "text": "ActionMailer::MailDeliveryJob",
+          "value": "ActionMailer::MailDeliveryJob"
         },
         "datasource": "VictoriaMetrics",
-        "definition": "label_values(app)",
+        "definition": "label_values(job_name)",
         "hide": 0,
         "includeAll": false,
-        "label": "App",
+        "label": "Job",
         "multi": false,
-        "name": "app",
+        "name": "job",
         "options": [],
-        "query": "label_values(app)",
+        "query": "label_values(job_name)",
         "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
@@ -119,7 +122,7 @@
     ]
   },
   "timezone": "",
-  "title": "Application Logs",
-  "uid": "oBLTuAAWk",
+  "title": "Jobs Logs",
+  "uid": "IO0ofYLZz",
   "version": 1
 }

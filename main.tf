@@ -96,6 +96,7 @@ resource "helm_release" "grafana" {
       containter-resource-usage  = indent(8, file("${local.dashboards_path}/kubernetes/containter-resource-usage.json"))
       pod-resource-usage-by-node = indent(8, file("${local.dashboards_path}/kubernetes/pod-resource-usage-by-node.json"))
       resource-utilisation       = indent(8, file("${local.dashboards_path}/kubernetes/resource-utilisation.json"))
+      jobs-monitoring            = indent(8, file("${local.dashboards_path}/kubernetes/jobs-monitoring.json"))
       # Loki Logs
       loki-application-logs      = indent(8, file("${local.dashboards_path}/logs/loki-application-logs.json"))
       # Rails App

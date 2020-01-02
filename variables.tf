@@ -55,7 +55,7 @@ variable "prometheus_version" {
 
 variable "grafana_version" {
   type        = string
-  default     = "6.5.0"
+  default     = "6.5.2"
   description = "Grafana version to deploy"
 }
 

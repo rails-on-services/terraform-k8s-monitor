@@ -66,6 +66,9 @@ dashboards:
     resource-utilisation:
       json: |
         ${resource-utilisation}
+    jobs-monitoring:
+      json: |
+        ${jobs-monitoring}
   aws:
     aws-elasticache-redis:
       json: |
