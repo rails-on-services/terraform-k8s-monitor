@@ -16,7 +16,7 @@
   "editable": true,
   "gnetId": 10884,
   "graphTooltip": 0,
-  "iteration": 1577972874504,
+  "iteration": 1577974341806,
   "links": [],
   "panels": [
     {
@@ -51,7 +51,7 @@
         "for": "2m",
         "frequency": "1m",
         "handler": 1,
-        "message": "Kubernetes job failed\nhttps://grafana.uat.whistler.perxtech.io/d/cb0HhItWz/kubernetes-cron-and-batch-job-monitoring?orgId=1",
+        "message": "Kubernetes jobs failed",
         "name": "Batch Jobs alert",
         "noDataState": "no_data",
         "notifications": [
@@ -122,12 +122,12 @@
           "refId": "B"
         },
         {
-          "expr": "sum(kube_job_failed{})",
+          "expr": "sum(kube_job_failed{}) by (namespace)",
           "format": "time_series",
           "hide": true,
           "instant": false,
           "intervalFactor": 1,
-          "legendFormat": "",
+          "legendFormat": "Failed Jobs {{namespace}}",
           "refId": "C"
         }
       ],
@@ -137,7 +137,8 @@
           "fill": true,
           "line": true,
           "op": "gt",
-          "value": 0
+          "value": 0,
+          "yaxis": "left"
         }
       ],
       "timeFrom": null,
@@ -277,7 +278,6 @@
       {
         "allValue": null,
         "current": {
-          "tags": [],
           "text": "dev1-whistler",
           "value": [
             "dev1-whistler"
@@ -336,5 +336,5 @@
   "timezone": "",
   "title": "Kubernetes Cron and Batch Job monitoring",
   "uid": "cb0HhItWz",
-  "version": 1
+  "version": 2
 }
