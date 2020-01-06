@@ -18,7 +18,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1575723887320,
+  "iteration": 1578280672693,
   "links": [],
   "panels": [
     {
@@ -147,7 +147,7 @@
       "lines": true,
       "linewidth": 1,
       "links": [],
-      "nullPointMode": "null",
+      "nullPointMode": "null as zero",
       "options": {
         "dataLinks": []
       },
@@ -167,8 +167,28 @@
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "latency",
+          "legendFormat": "Total latency",
           "refId": "A"
+        },
+        {
+          "expr": "sum(rate(ruby_http_queue_duration_seconds_sum{namespace=~\"$namespace\",app_kubernetes_io_name=~\"$app\"})) / sum(rate(ruby_http_queue_duration_seconds_count{namespace=~\"$namespace\",app_kubernetes_io_name=~\"$app\"}))",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "LB queue latency",
+          "refId": "B"
+        },
+        {
+          "expr": "sum(rate(ruby_http_sql_duration_seconds_sum{namespace=~\"$namespace\",app_kubernetes_io_name=~\"$app\"})) / sum(rate(ruby_http_sql_duration_seconds_count{namespace=~\"$namespace\",app_kubernetes_io_name=~\"$app\"}))",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "SQL latency",
+          "refId": "C"
         }
       ],
       "thresholds": [],
@@ -815,5 +835,5 @@
   "timezone": "",
   "title": "Rails App Overview",
   "uid": "ZFkkPt0Wz",
-  "version": 2
+  "version": 1
 }
