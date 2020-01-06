@@ -189,6 +189,16 @@
           "intervalFactor": 1,
           "legendFormat": "SQL latency",
           "refId": "C"
+        },
+        {
+          "expr": "sum(rate(ruby_http_redis_duration_seconds_sum{namespace=~\"$namespace\",app_kubernetes_io_name=~\"$app\"})) / sum(rate(ruby_http_redis_duration_seconds_count{namespace=~\"$namespace\",app_kubernetes_io_name=~\"$app\"}))",
+          "format": "time_series",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Redis latency",
+          "refId": "D"
         }
       ],
       "thresholds": [],
