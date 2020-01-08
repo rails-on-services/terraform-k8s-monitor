@@ -18,7 +18,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1573523728936,
+  "iteration": 1578462735856,
   "links": [],
   "panels": [
     {
@@ -36,13 +36,14 @@
         "x": 0,
         "y": 0
       },
+      "hiddenSeries": false,
       "id": 4,
       "legend": {
         "alignAsTable": true,
-        "avg": false,
+        "avg": true,
         "current": true,
-        "hideEmpty": true,
-        "hideZero": true,
+        "hideEmpty": false,
+        "hideZero": false,
         "max": true,
         "min": false,
         "rightSide": true,
@@ -131,6 +132,7 @@
         "x": 0,
         "y": 8
       },
+      "hiddenSeries": false,
       "id": 6,
       "legend": {
         "alignAsTable": true,
@@ -154,7 +156,7 @@
           {
             "targetBlank": true,
             "title": "Logs Dashboard",
-            "url": "d/oBLTuAAWk/application-logs?orgId=1&from=${__from}&to=${__value.time}&var-namespace=${namespace}&var-app=${__series.labels.app}"
+            "url": "d/oBLTuAAWk/application-logs?orgId=1&from=${__from}&to=${__value.time}&var-namespace=${namespace}&var-app=${__field.labels.app}"
           }
         ]
       },
@@ -232,6 +234,7 @@
         "x": 0,
         "y": 15
       },
+      "hiddenSeries": false,
       "id": 2,
       "legend": {
         "alignAsTable": true,
@@ -323,8 +326,8 @@
       }
     }
   ],
-  "refresh": "",
-  "schemaVersion": 20,
+  "refresh": false,
+  "schemaVersion": 21,
   "style": "dark",
   "tags": [
     "ruby",
@@ -339,15 +342,15 @@
           "value": "dev1-whistler"
         },
         "datasource": "VictoriaMetrics",
-        "definition": "label_values(ruby_sidekiq_jobs_total,namespace)",
+        "definition": "label_values(ruby_collector_working, namespace)",
         "hide": 0,
         "includeAll": false,
         "label": "Namespace",
         "multi": false,
         "name": "namespace",
         "options": [],
-        "query": "label_values(ruby_sidekiq_jobs_total,namespace)",
-        "refresh": 1,
+        "query": "label_values(ruby_collector_working, namespace)",
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -366,16 +369,16 @@
           ]
         },
         "datasource": "VictoriaMetrics",
-        "definition": "label_values(ruby_sidekiq_jobs_total,app_kubernetes_io_name)",
+        "definition": "label_values(ruby_collector_working, app_kubernetes_io_name)",
         "hide": 0,
         "includeAll": true,
         "label": "App",
         "multi": true,
         "name": "app",
         "options": [],
-        "query": "label_values(ruby_sidekiq_jobs_total,app_kubernetes_io_name)",
-        "refresh": 1,
-        "regex": "",
+        "query": "label_values(ruby_collector_working, app_kubernetes_io_name)",
+        "refresh": 2,
+        "regex": "/worker/",
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
@@ -387,7 +390,7 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -407,5 +410,5 @@
   "timezone": "",
   "title": "Worker Jobs Overview",
   "uid": "1-syPt0Zz",
-  "version": 2
+  "version": 1
 }
