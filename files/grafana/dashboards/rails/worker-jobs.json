@@ -18,7 +18,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1578462735856,
+  "iteration": 1578465366485,
   "links": [],
   "panels": [
     {
@@ -170,9 +170,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(ruby_sidekiq_failed_jobs_total{namespace=~\"$namespace\",app=~\"$app\"})) by (app) / sum(rate(ruby_sidekiq_jobs_total{namespace=~\"$namespace\",app=~\"$app\"})) by (app) ",
+          "expr": "sum(rate(ruby_sidekiq_failed_jobs_total{namespace=~\"$namespace\",app=~\"$app\"})) by (job_name, app) / sum(rate(ruby_sidekiq_jobs_total{namespace=~\"$namespace\",app=~\"$app\"})) by (job_name, app) ",
           "intervalFactor": 1,
-          "legendFormat": "{{app}}",
+          "legendFormat": "{{app}} : {{job_name}}",
           "refId": "A"
         }
       ],
@@ -363,6 +363,7 @@
       {
         "allValue": null,
         "current": {
+          "tags": [],
           "text": "All",
           "value": [
             "$__all"
@@ -410,5 +411,5 @@
   "timezone": "",
   "title": "Worker Jobs Overview",
   "uid": "1-syPt0Zz",
-  "version": 1
+  "version": 2
 }
