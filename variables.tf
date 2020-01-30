@@ -37,7 +37,7 @@ variable "monitor_depends_on" {
 
 variable "vm_version" {
   type = string
-  default = "1.30.0"
+  default = "1.32.8"
   description = "Victoria Metrics version to deploy"
 }
 

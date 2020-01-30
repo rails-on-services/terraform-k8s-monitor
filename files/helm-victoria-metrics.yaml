@@ -26,10 +26,10 @@ vmselect:
       requiredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
           matchExpressions:
-          - key: app.kubernetes.io/name
+          - key: app
             operator: In
             values:
-            - victoria-metrics-cluster
+            - vmselect
         topologyKey: kubernetes.io/hostname
 vminsert:
   fullnameOverride: vminsert
@@ -59,10 +59,10 @@ vminsert:
       requiredDuringSchedulingIgnoredDuringExecution:
       - labelSelector:
           matchExpressions:
-          - key: app.kubernetes.io/name
+          - key: app
             operator: In
             values:
-            - victoria-metrics-cluster
+            - vminsert
         topologyKey: kubernetes.io/hostname
 vmstorage:
   fullnameOverride: vmstorage
@@ -74,9 +74,9 @@ vmstorage:
   resources:
     limits:
       cpu: 1
-      memory: 4Gi
+      memory: 6Gi
     requests:
       cpu: 500m
-      memory: 3Gi
+      memory: 5Gi
   # serviceMonitor:
   #   enabled: true
