@@ -17,7 +17,7 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "iteration": 1577981223644,
+  "iteration": 1580396280685,
   "links": [],
   "panels": [
     {
@@ -73,13 +73,13 @@
           "refId": "A"
         },
         {
-          "expr": "sum(kube_pod_container_resource_limits{namespace=~\"$namespace\",container=~\"$container\",resource=\"cpu\"}) ",
+          "expr": "sum(kube_pod_container_resource_limits{namespace=~\"$namespace\",container=~\"$container\",resource=\"cpu\"} and on (pod) kube_pod_container_status_running >0) ",
           "hide": false,
           "legendFormat": "Limits CPU Core",
           "refId": "E"
         },
         {
-          "expr": "sum(kube_pod_container_resource_requests{namespace=~\"$namespace\",container=~\"$container\",resource=\"cpu\"})",
+          "expr": "sum(kube_pod_container_resource_requests{namespace=~\"$namespace\",container=~\"$container\",resource=\"cpu\"} and on (pod) kube_pod_container_status_running >0)",
           "hide": false,
           "legendFormat": "Requested CPU Core",
           "refId": "D"
@@ -186,12 +186,12 @@
           "refId": "D"
         },
         {
-          "expr": "sum(kube_pod_container_resource_limits{namespace=~\"$namespace\",container=~\"$container\",resource=\"memory\"})",
+          "expr": "sum(kube_pod_container_resource_limits{namespace=~\"$namespace\",container=~\"$container\",resource=\"memory\"} and on (pod) kube_pod_container_status_running >0)",
           "legendFormat": "Limit RAM",
           "refId": "B"
         },
         {
-          "expr": "sum(kube_pod_container_resource_requests{namespace=~\"$namespace\",container=~\"$container\",resource=\"memory\"})",
+          "expr": "sum(kube_pod_container_resource_requests{namespace=~\"$namespace\",container=~\"$container\",resource=\"memory\"} and on (pod) kube_pod_container_status_running >0)",
           "legendFormat": "Requested RAM",
           "refId": "C"
         },
@@ -906,5 +906,5 @@
   "timezone": "",
   "title": "Container Resource Usage",
   "uid": "HfUgCa0Wk",
-  "version": 2
+  "version": 3
 }
