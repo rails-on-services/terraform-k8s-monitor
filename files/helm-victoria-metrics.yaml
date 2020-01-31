@@ -31,6 +31,10 @@ vmselect:
             values:
             - vmselect
         topologyKey: kubernetes.io/hostname
+  tolerations:
+  - key: spotInstance
+    operator: Exists
+    effect: NoSchedule
 vminsert:
   fullnameOverride: vminsert
   replicaCount: 2
@@ -64,6 +68,10 @@ vminsert:
             values:
             - vminsert
         topologyKey: kubernetes.io/hostname
+  tolerations:
+  - key: spotInstance
+    operator: Exists
+    effect: NoSchedule
 vmstorage:
   fullnameOverride: vmstorage
   replicaCount: 1

@@ -358,3 +358,9 @@ serverFiles:
         regex: istio-citadel;http-monitoring
         replacement: $1
         action: keep
+    - job_name: vm-cluster
+      static_configs:
+      - targets:
+        - 'vminsert:8480'
+        - 'vmselect:8481'
+        - 'vmstorage:8482'
