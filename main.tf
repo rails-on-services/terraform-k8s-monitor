@@ -58,6 +58,138 @@ resource "kubernetes_secret" "grafana-datasources" {
   }
 }
 
+resource "kubernetes_config_map" "grafana-dashboards-kubernetes" {
+  count      = length(fileset(local.dashboards_path, "kubernetes/*.json"))
+  depends_on = [var.monitor_depends_on]
+
+  metadata {
+    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "kubernetes/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    namespace = var.namespace
+
+    labels = {
+      grafana_dashboard = 1
+    }
+
+    annotations = {
+      k8s-sidecar-target-directory: "/var/lib/grafana/dashboards/kubernetes"
+    }
+  }
+
+  data = {
+    basename(sort(fileset(local.dashboards_path, "kubernetes/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "kubernetes/*.json"))[count.index]}")
+  }
+}
+
+resource "kubernetes_config_map" "grafana-dashboards-aws" {
+  count      = length(fileset(local.dashboards_path, "aws/*.json"))
+  depends_on = [var.monitor_depends_on]
+
+  metadata {
+    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "aws/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    namespace = var.namespace
+
+    labels = {
+      grafana_dashboard = 1
+    }
+
+    annotations = {
+      k8s-sidecar-target-directory: "/var/lib/grafana/dashboards/aws"
+    }
+  }
+
+  data = {
+    basename(sort(fileset(local.dashboards_path, "aws/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "aws/*.json"))[count.index]}")
+  }
+}
+
+resource "kubernetes_config_map" "grafana-dashboards-logs" {
+  count      = length(fileset(local.dashboards_path, "logs/*.json"))
+  depends_on = [var.monitor_depends_on]
+
+  metadata {
+    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "logs/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    namespace = var.namespace
+
+    labels = {
+      grafana_dashboard = 1
+    }
+
+    annotations = {
+      k8s-sidecar-target-directory: "/var/lib/grafana/dashboards/logs"
+    }
+  }
+
+  data = {
+    basename(sort(fileset(local.dashboards_path, "logs/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "logs/*.json"))[count.index]}")
+  }
+}
+
+resource "kubernetes_config_map" "grafana-dashboards-rails" {
+  count      = length(fileset(local.dashboards_path, "rails/*.json"))
+  depends_on = [var.monitor_depends_on]
+
+  metadata {
+    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "rails/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    namespace = var.namespace
+
+    labels = {
+      grafana_dashboard = 1
+    }
+
+    annotations = {
+      k8s-sidecar-target-directory: "/var/lib/grafana/dashboards/rails"
+    }
+  }
+
+  data = {
+    basename(sort(fileset(local.dashboards_path, "rails/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "rails/*.json"))[count.index]}")
+  }
+}
+
+resource "kubernetes_config_map" "grafana-dashboards-vm" {
+  count      = length(fileset(local.dashboards_path, "vm/*.json"))
+  depends_on = [var.monitor_depends_on]
+
+  metadata {
+    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "vm/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    namespace = var.namespace
+
+    labels = {
+      grafana_dashboard = 1
+    }
+
+    annotations = {
+      k8s-sidecar-target-directory: "/var/lib/grafana/dashboards/vm"
+    }
+  }
+
+  data = {
+    basename(sort(fileset(local.dashboards_path, "vm/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "vm/*.json"))[count.index]}")
+  }
+}
+
+resource "kubernetes_config_map" "grafana-dashboards-istio" {
+  count      = length(fileset(local.dashboards_path, "istio/*.json"))
+  depends_on = [var.monitor_depends_on]
+
+  metadata {
+    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "istio/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    namespace = var.namespace
+
+    labels = {
+      grafana_dashboard = 1
+    }
+
+    annotations = {
+      k8s-sidecar-target-directory: "/tmp/dashboards/1"
+    }
+  }
+
+  data = {
+    basename(sort(fileset(local.dashboards_path, "istio/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "istio/*.json"))[count.index]}")
+  }
+}
+
 resource "helm_release" "grafana-ingress" {
   depends_on = [var.monitor_depends_on]
   name       = "grafana-ingress"
@@ -80,8 +212,9 @@ resource "helm_release" "grafana" {
   ]
 
   name         = "grafana"
-  chart        = "grafana"
-  repository   = "stable"
+  #chart        = "grafana"
+  chart        = "/Users/perx/Desktop/Repositories/test_grafana_chart/charts/stable/grafana"
+  #repository   = "stable"
   namespace    = var.namespace
   wait         = true
   force_update = true
@@ -89,25 +222,25 @@ resource "helm_release" "grafana" {
   values = [
     templatefile("${path.module}/templates/grafana.tpl", {
       tag = var.grafana_version
-      # AWS
-      aws-elasticache-redis      = indent(8, file("${local.dashboards_path}/aws/aws-elasticache-redis.json"))
-      # K8s
-      cluster-usage-overview     = indent(8, file("${local.dashboards_path}/kubernetes/cluster-usage-overview.json"))
-      containter-resource-usage  = indent(8, file("${local.dashboards_path}/kubernetes/containter-resource-usage.json"))
-      pod-resource-usage-by-node = indent(8, file("${local.dashboards_path}/kubernetes/pod-resource-usage-by-node.json"))
-      resource-utilisation       = indent(8, file("${local.dashboards_path}/kubernetes/resource-utilisation.json"))
-      jobs-monitoring            = indent(8, file("${local.dashboards_path}/kubernetes/jobs-monitoring.json"))
-      # Loki Logs
-      loki-application-logs      = indent(8, file("${local.dashboards_path}/logs/loki-application-logs.json"))
-      loki-job-logs              = indent(8, file("${local.dashboards_path}/logs/loki-job-logs.json"))
-      # Rails App
-      rails-app-overview         = indent(8, file("${local.dashboards_path}/rails/rails-app-overview.json"))
-      worker-jobs                = indent(8, file("${local.dashboards_path}/rails/worker-jobs.json"))
-      # Victoria Metrics
-      victoria-metrics-dashboard = indent(8, file("${local.dashboards_path}/vm/victoria-metrics-dashboard.json"))
-      # Istio
-      istio-performance          = indent(8, file("${local.dashboards_path}/istio/istio-performance.json"))
-      istio-workload             = indent(8, file("${local.dashboards_path}/istio/istio-workload.json"))
+      # # AWS
+      # aws-elasticache-redis      = indent(8, file("${local.dashboards_path}/aws/aws-elasticache-redis.json"))
+      # # K8s
+      # cluster-usage-overview     = indent(8, file("${local.dashboards_path}/kubernetes/cluster-usage-overview.json"))
+      # containter-resource-usage  = indent(8, file("${local.dashboards_path}/kubernetes/containter-resource-usage.json"))
+      # pod-resource-usage-by-node = indent(8, file("${local.dashboards_path}/kubernetes/pod-resource-usage-by-node.json"))
+      # resource-utilisation       = indent(8, file("${local.dashboards_path}/kubernetes/resource-utilisation.json"))
+      # jobs-monitoring            = indent(8, file("${local.dashboards_path}/kubernetes/jobs-monitoring.json"))
+      # # Loki Logs
+      # loki-application-logs      = indent(8, file("${local.dashboards_path}/logs/loki-application-logs.json"))
+      # loki-job-logs              = indent(8, file("${local.dashboards_path}/logs/loki-job-logs.json"))
+      # # Rails App
+      # rails-app-overview         = indent(8, file("${local.dashboards_path}/rails/rails-app-overview.json"))
+      # worker-jobs                = indent(8, file("${local.dashboards_path}/rails/worker-jobs.json"))
+      # # Victoria Metrics
+      # victoria-metrics-dashboard = indent(8, file("${local.dashboards_path}/vm/victoria-metrics-dashboard.json"))
+      # # Istio
+      # istio-performance          = indent(8, file("${local.dashboards_path}/istio/istio-performance.json"))
+      # istio-workload             = indent(8, file("${local.dashboards_path}/istio/istio-workload.json"))
     }
     ),
     file("${path.module}/files/grafana/helm-grafana.yaml"),
