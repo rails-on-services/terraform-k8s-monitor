@@ -41,11 +41,11 @@ resource "kubernetes_secret" "grafana-credentials" {
 }
 
 resource "kubernetes_secret" "grafana-datasources" {
-  count      = length(fileset(local.datasources_path, "*.yaml"))
+  for_each   = fileset(local.datasources_path, "*.yaml")
   depends_on = [var.monitor_depends_on]
 
   metadata {
-    name      = "grafana-datasource-${replace(replace(sort(fileset(local.datasources_path, "*.yaml"))[count.index], ".yaml", ""), "_", "-")}"
+    name      = "grafana-datasource-${replace(replace(each.key, ".yaml", ""), "_", "-")}"
     namespace = var.namespace
 
     labels = {
@@ -54,16 +54,16 @@ resource "kubernetes_secret" "grafana-datasources" {
   }
 
   data = {
-    sort(fileset(local.datasources_path, "*.yaml"))[count.index] = file("${local.datasources_path}/${sort(fileset(local.datasources_path, "*.yaml"))[count.index]}")
+    "${each.key}" = file("${local.datasources_path}/${each.key}")
   }
 }
 
 resource "kubernetes_config_map" "grafana-dashboards-kubernetes" {
-  count      = length(fileset(local.dashboards_path, "kubernetes/*.json"))
+  for_each   = fileset(local.dashboards_path, "kubernetes/*.json")
   depends_on = [var.monitor_depends_on]
 
   metadata {
-    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "kubernetes/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    name      = "grafana-dashboard-${replace(replace(basename(each.key), ".json", ""), "_", "-")}"
     namespace = var.namespace
 
     labels = {
@@ -76,16 +76,16 @@ resource "kubernetes_config_map" "grafana-dashboards-kubernetes" {
   }
 
   data = {
-    basename(sort(fileset(local.dashboards_path, "kubernetes/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "kubernetes/*.json"))[count.index]}")
+    basename(each.key) = file("${local.dashboards_path}/${each.key}")
   }
 }
 
 resource "kubernetes_config_map" "grafana-dashboards-aws" {
-  count      = length(fileset(local.dashboards_path, "aws/*.json"))
+  for_each   = fileset(local.dashboards_path, "aws/*.json")
   depends_on = [var.monitor_depends_on]
 
   metadata {
-    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "aws/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    name      = "grafana-dashboard-${replace(replace(basename(each.key), ".json", ""), "_", "-")}"
     namespace = var.namespace
 
     labels = {
@@ -98,16 +98,16 @@ resource "kubernetes_config_map" "grafana-dashboards-aws" {
   }
 
   data = {
-    basename(sort(fileset(local.dashboards_path, "aws/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "aws/*.json"))[count.index]}")
+    basename(each.key) = file("${local.dashboards_path}/${each.key}")
   }
 }
 
 resource "kubernetes_config_map" "grafana-dashboards-logs" {
-  count      = length(fileset(local.dashboards_path, "logs/*.json"))
+  for_each   = fileset(local.dashboards_path, "logs/*.json")
   depends_on = [var.monitor_depends_on]
 
   metadata {
-    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "logs/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    name      = "grafana-dashboard-${replace(replace(basename(each.key), ".json", ""), "_", "-")}"
     namespace = var.namespace
 
     labels = {
@@ -120,16 +120,16 @@ resource "kubernetes_config_map" "grafana-dashboards-logs" {
   }
 
   data = {
-    basename(sort(fileset(local.dashboards_path, "logs/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "logs/*.json"))[count.index]}")
+    basename(each.key) = file("${local.dashboards_path}/${each.key}")
   }
 }
 
 resource "kubernetes_config_map" "grafana-dashboards-rails" {
-  count      = length(fileset(local.dashboards_path, "rails/*.json"))
+  for_each   = fileset(local.dashboards_path, "rails/*.json")
   depends_on = [var.monitor_depends_on]
 
   metadata {
-    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "rails/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    name      = "grafana-dashboard-${replace(replace(basename(each.key), ".json", ""), "_", "-")}"
     namespace = var.namespace
 
     labels = {
@@ -142,16 +142,16 @@ resource "kubernetes_config_map" "grafana-dashboards-rails" {
   }
 
   data = {
-    basename(sort(fileset(local.dashboards_path, "rails/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "rails/*.json"))[count.index]}")
+    basename(each.key) = file("${local.dashboards_path}/${each.key}")
   }
 }
 
 resource "kubernetes_config_map" "grafana-dashboards-vm" {
-  count      = length(fileset(local.dashboards_path, "vm/*.json"))
+  for_each   = fileset(local.dashboards_path, "vm/*.json")
   depends_on = [var.monitor_depends_on]
 
   metadata {
-    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "vm/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    name      = "grafana-dashboard-${replace(replace(basename(each.key), ".json", ""), "_", "-")}"
     namespace = var.namespace
 
     labels = {
@@ -164,16 +164,16 @@ resource "kubernetes_config_map" "grafana-dashboards-vm" {
   }
 
   data = {
-    basename(sort(fileset(local.dashboards_path, "vm/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "vm/*.json"))[count.index]}")
+    basename(each.key) = file("${local.dashboards_path}/${each.key}")
   }
 }
 
 resource "kubernetes_config_map" "grafana-dashboards-istio" {
-  count      = length(fileset(local.dashboards_path, "istio/*.json"))
+  for_each   = fileset(local.dashboards_path, "istio/*.json")
   depends_on = [var.monitor_depends_on]
 
   metadata {
-    name      = "grafana-dashboard-${replace(replace(basename(sort(fileset(local.dashboards_path, "istio/*.json"))[count.index]), ".json", ""), "_", "-")}"
+    name      = "grafana-dashboard-${replace(replace(basename(each.key), ".json", ""), "_", "-")}"
     namespace = var.namespace
 
     labels = {
@@ -186,7 +186,7 @@ resource "kubernetes_config_map" "grafana-dashboards-istio" {
   }
 
   data = {
-    basename(sort(fileset(local.dashboards_path, "istio/*.json"))[count.index]) = file("${local.dashboards_path}/${sort(fileset(local.dashboards_path, "istio/*.json"))[count.index]}")
+    basename(each.key) = file("${local.dashboards_path}/${each.key}")
   }
 }
 
@@ -222,27 +222,7 @@ resource "helm_release" "grafana" {
   values = [
     templatefile("${path.module}/templates/grafana.tpl", {
       tag = var.grafana_version
-      # # AWS
-      # aws-elasticache-redis      = indent(8, file("${local.dashboards_path}/aws/aws-elasticache-redis.json"))
-      # # K8s
-      # cluster-usage-overview     = indent(8, file("${local.dashboards_path}/kubernetes/cluster-usage-overview.json"))
-      # containter-resource-usage  = indent(8, file("${local.dashboards_path}/kubernetes/containter-resource-usage.json"))
-      # pod-resource-usage-by-node = indent(8, file("${local.dashboards_path}/kubernetes/pod-resource-usage-by-node.json"))
-      # resource-utilisation       = indent(8, file("${local.dashboards_path}/kubernetes/resource-utilisation.json"))
-      # jobs-monitoring            = indent(8, file("${local.dashboards_path}/kubernetes/jobs-monitoring.json"))
-      # # Loki Logs
-      # loki-application-logs      = indent(8, file("${local.dashboards_path}/logs/loki-application-logs.json"))
-      # loki-job-logs              = indent(8, file("${local.dashboards_path}/logs/loki-job-logs.json"))
-      # # Rails App
-      # rails-app-overview         = indent(8, file("${local.dashboards_path}/rails/rails-app-overview.json"))
-      # worker-jobs                = indent(8, file("${local.dashboards_path}/rails/worker-jobs.json"))
-      # # Victoria Metrics
-      # victoria-metrics-dashboard = indent(8, file("${local.dashboards_path}/vm/victoria-metrics-dashboard.json"))
-      # # Istio
-      # istio-performance          = indent(8, file("${local.dashboards_path}/istio/istio-performance.json"))
-      # istio-workload             = indent(8, file("${local.dashboards_path}/istio/istio-workload.json"))
-    }
-    ),
+    }),
     file("${path.module}/files/grafana/helm-grafana.yaml"),
     jsonencode(lookup(var.helm_configuration_overrides, "grafana", {}))
   ]
