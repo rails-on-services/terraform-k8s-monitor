@@ -20,7 +20,7 @@ admin:
   passwordKey: password
 sidecar:
   dashboards:
-    enabled: false
+    enabled: true
   datasources:
     enabled: true
     label: grafana_datasource
