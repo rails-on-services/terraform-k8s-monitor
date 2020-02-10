@@ -181,7 +181,7 @@ resource "kubernetes_config_map" "grafana-dashboards-istio" {
     }
 
     annotations = {
-      k8s-sidecar-target-directory: "/tmp/dashboards/1"
+      k8s-sidecar-target-directory: "/tmp/dashboards/istio"
     }
   }
 
